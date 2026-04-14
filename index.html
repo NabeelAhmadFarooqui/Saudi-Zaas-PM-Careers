@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Manager | Careers - Riyadh, KSA</title>
+    <style>
+        :root {
+            --primary: #5B4A9E;
+            --accent: #7B68AE;
+            --light-blue: #F0ECF7;
+            --dark: #1a1a2e;
+            --text: #333;
+            --muted: #666;
+            --bg: #f8f7fc;
+            --white: #fff;
+            --border: #e0dced;
+            --gradient-start: #5B4A9E;
+            --gradient-end: #7B68AE;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            color: var(--text);
+            background: var(--bg);
+            line-height: 1.6;
+        }
+
+        /* ── NAV ── */
+        nav {
+            background: var(--white);
+            border-bottom: 1px solid var(--border);
+            padding: 0.8rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 1px 8px rgba(0,0,0,0.06);
+        }
+        .nav-logo { display: flex; align-items: center; gap: 0.7rem; text-decoration: none; }
+        .nav-logo-divider { width: 1px; height: 32px; background: var(--border); }
+        .nav-logo span { font-size: 1rem; font-weight: 600; color: var(--muted); }
+        .nav-links { display: flex; gap: 1.5rem; align-items: center; }
+        .nav-links a {
+            text-decoration: none;
+            color: var(--muted);
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+        .nav-links a:hover { color: var(--primary); }
+        .nav-apply-btn {
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+            color: white !important;
+            padding: 0.5rem 1.2rem;
+            border-radius: 6px;
+            font-weight: 600 !important;
+            transition: transform 0.2s, box-shadow 0.2s !important;
+        }
+        .nav-apply-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(91,74,158,0.4);
+        }
+
+        /* ── HERO ── */
+        .hero {
+            background: linear-gradient(135deg, var(--dark) 0%, var(--primary) 50%, var(--accent) 100%);
+            color: white;
+            padding: 5rem 2rem 4rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%; left: -50%;
+            width: 200%; height: 200%;
+            background: radial-gradient(circle at 30% 50%, rgba(255,255,255,0.05) 0%, transparent 50%),
+                        radial-gradient(circle at 70% 80%, rgba(255,255,255,0.03) 0%, transparent 50%);
+            animation: float 20s ease-in-out infinite;
+        }
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            50% { transform: translate(-20px, -20px) rotate(2deg); }
+        }
+        .hero-content { position: relative; z-index: 1; max-width: 800px; margin: 0 auto; }
+        .hero-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.15);
+            backdrop-filter: blur(10px);
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            margin-bottom: 1.5rem;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        .hero h1 { font-size: 2.8rem; font-weight: 800; margin-bottom: 0.8rem; letter-spacing: -0.5px; }
+        .hero-subtitle {
+            font-size: 1.15rem;
+            opacity: 0.9;
+            margin-bottom: 2rem;
+            max-width: 640px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .hero-tags { display: flex; justify-content: center; gap: 0.8rem; flex-wrap: wrap; margin-bottom: 2.5rem; }
+        .hero-tag {
+            background: rgba(255,255,255,0.12);
+            padding: 0.4rem 1rem;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+        .hero-cta {
+            display: inline-block;
+            background: white;
+            color: var(--primary);
+            padding: 0.9rem 2.5rem;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 1.05rem;
+            text-decoration: none;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .hero-cta:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(0,0,0,0.25); }
+
+        /* ── LAYOUT ── */
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
+
+        /* ── SECTION ── */
+        .section { padding: 4rem 0; }
+        .section-title { font-size: 1.8rem; font-weight: 700; color: var(--primary); margin-bottom: 0.4rem; }
+        .section-line {
+            width: 50px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent), var(--primary));
+            border-radius: 2px;
+            margin-bottom: 1.5rem;
+        }
+
+        /* ── SUMMARY ── */
+        .summary-box {
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-left: 4px solid var(--primary);
+            border-radius: 10px;
+            padding: 1.8rem 2rem;
+            color: var(--text);
+            font-size: 0.98rem;
+        }
+
+        /* ── SCOPE ── */
+        .scope-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        .scope-card {
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 1.2rem;
+            text-align: center;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .scope-card:hover { transform: translateY(-3px); box-shadow: 0 6px 20px rgba(0,0,0,0.06); }
+        .scope-icon { font-size: 2rem; margin-bottom: 0.5rem; }
+        .scope-card h4 { color: var(--primary); font-size: 0.95rem; margin-bottom: 0.3rem; }
+        .scope-card p { color: var(--muted); font-size: 0.82rem; }
+
+        /* ── JD CARD ── */
+        .jd-section { background: var(--white); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+        .jd-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+        .resp-card {
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 1.5rem;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .resp-card:hover { transform: translateY(-2px); box-shadow: 0 4px 15px rgba(0,0,0,0.06); }
+        .resp-number {
+            display: inline-flex;
+            width: 28px; height: 28px;
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+            color: white;
+            border-radius: 6px;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            font-weight: 700;
+            margin-bottom: 0.6rem;
+        }
+        .resp-card h3 { font-size: 1rem; color: var(--primary); margin-bottom: 0.6rem; }
+        .resp-card ul { list-style: none; padding: 0; }
+        .resp-card li {
+            font-size: 0.88rem;
+            color: var(--muted);
+            padding: 0.25rem 0;
+            padding-left: 1.2rem;
+            position: relative;
+        }
+        .resp-card li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0.65rem;
+            width: 6px;
+            height: 6px;
+            background: var(--accent);
+            border-radius: 50%;
+        }
+
+        /* ── PROFILE ── */
+        .profile-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+        .profile-box {
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 2rem;
+        }
+        .profile-box h3 { color: var(--primary); margin-bottom: 1rem; font-size: 1.1rem; }
+        .profile-box li {
+            font-size: 0.92rem;
+            color: var(--text);
+            padding: 0.35rem 0;
+            padding-left: 1.4rem;
+            position: relative;
+            list-style: none;
+        }
+        .profile-box li::before {
+            content: '\2713';
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+            font-weight: 700;
+        }
+
+        /* ── FORM ── */
+        .form-section {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            color: white;
+            padding: 4rem 0;
+        }
+        .form-wrapper {
+            background: var(--white);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        /* ── FOOTER ── */
+        footer {
+            background: var(--dark);
+            color: rgba(255,255,255,0.6);
+            padding: 2rem;
+            text-align: center;
+            font-size: 0.85rem;
+        }
+        footer a { color: rgba(255,255,255,0.8); text-decoration: none; }
+        footer a:hover { color: white; }
+
+        /* ── RESPONSIVE ── */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 1.8rem; }
+            .jd-grid, .profile-grid { grid-template-columns: 1fr; }
+            .scope-grid { grid-template-columns: 1fr 1fr; }
+            .nav-links a:not(.nav-apply-btn) { display: none; }
+            .hero-tags { gap: 0.4rem; }
+            .hero-tag { font-size: 0.75rem; padding: 0.3rem 0.7rem; }
+        }
+        @media (max-width: 480px) {
+            .scope-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav>
+    <a href="#" class="nav-logo">
+        <span style="font-size:1.3rem;font-weight:800;color:var(--primary);">&#x1F3D7;&#xFE0F;</span>
+        <div class="nav-logo-divider"></div>
+        <span>Careers</span>
+    </a>
+    <div class="nav-links">
+        <a href="#summary">Overview</a>
+        <a href="#responsibilities">Role</a>
+        <a href="#profile">Profile</a>
+        <a href="#apply" class="nav-apply-btn">Apply Now</a>
+    </div>
+</nav>
+
+<!-- ── HERO ── -->
+<div class="hero">
+    <div class="hero-content">
+        <div class="hero-badge">We're Hiring in Riyadh</div>
+        <h1>Project Manager</h1>
+        <p class="hero-subtitle">Lead end-to-end delivery of construction projects &mdash; residential buildings, warehouses, cold stores, infrastructure, and underground utility networks.</p>
+        <div class="hero-tags">
+            <span class="hero-tag">&#x1F4CD; Riyadh, KSA</span>
+            <span class="hero-tag">&#x1F4BC; Full-time</span>
+            <span class="hero-tag">&#x1F3D7;&#xFE0F; Construction</span>
+            <span class="hero-tag">&#x1F3AF; Main Contractor</span>
+        </div>
+        <a href="#apply" class="hero-cta">Apply Now &rarr;</a>
+    </div>
+</div>
+
+<!-- ── POSITION SUMMARY ── -->
+<div class="section" id="summary">
+    <div class="container">
+        <div class="section-title">Position Summary</div>
+        <div class="section-line"></div>
+        <div class="summary-box">
+            The Project Manager is responsible for the end-to-end delivery of construction projects undertaken by the Company as a Main Contractor. The role demands strong technical knowledge combined with commercial awareness to plan, execute, monitor, and close projects on time, within budget, and to the required quality standards. The candidate will manage projects including residential buildings, warehouses, cold stores, infrastructure roads, landscape works, and complete underground utility networks.
+        </div>
+    </div>
+</div>
+
+<!-- ── SCOPE OF PROJECTS ── -->
+<div class="section" style="background: var(--white); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);" id="scope">
+    <div class="container">
+        <div class="section-title">Scope of Projects Managed</div>
+        <div class="section-line"></div>
+        <div class="scope-grid">
+            <div class="scope-card">
+                <div class="scope-icon">&#x1F3E0;</div>
+                <h4>Residential Buildings</h4>
+                <p>G+1 to G+3 and above, villas, staff accommodation</p>
+            </div>
+            <div class="scope-card">
+                <div class="scope-icon">&#x1F3ED;</div>
+                <h4>Warehouses &amp; Cold Stores</h4>
+                <p>Industrial warehouses and cold storage facilities</p>
+            </div>
+            <div class="scope-card">
+                <div class="scope-icon">&#x1F3E8;</div>
+                <h4>Hospitality</h4>
+                <p>Hotels and serviced apartments</p>
+            </div>
+            <div class="scope-card">
+                <div class="scope-icon">&#x1F6E3;&#xFE0F;</div>
+                <h4>Infrastructure &amp; Roads</h4>
+                <p>Road works and landscape development</p>
+            </div>
+            <div class="scope-card">
+                <div class="scope-icon">&#x1F527;</div>
+                <h4>Underground Utilities</h4>
+                <p>Storm drainage, sewerage, potable water, irrigation, electrical ducting, and telecom networks</p>
+            </div>
+            <div class="scope-card">
+                <div class="scope-icon">&#x1F3E2;</div>
+                <h4>Mixed-Use &amp; Commercial</h4>
+                <p>Developments for government and private sector clients</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ── KEY RESPONSIBILITIES ── -->
+<div class="section jd-section" id="responsibilities">
+    <div class="container">
+        <div class="section-title">Key Responsibilities</div>
+        <div class="section-line"></div>
+        <div class="jd-grid">
+            <div class="resp-card">
+                <div class="resp-number">1</div>
+                <h3>Site Leadership &amp; Team Management</h3>
+                <ul>
+                    <li>Lead and direct site teams including site engineers, foremen, HSE officers, QC inspectors, and subcontractors</li>
+                    <li>Oversee all civil, structural, architectural, MEP, and infrastructure works throughout the construction lifecycle</li>
+                    <li>Conduct regular site walks, progress meetings, and coordination sessions</li>
+                </ul>
+            </div>
+            <div class="resp-card">
+                <div class="resp-number">2</div>
+                <h3>Subcontractor &amp; Supplier Management</h3>
+                <ul>
+                    <li>Manage subcontractor and supplier performance, ensuring timely delivery of materials and works</li>
+                    <li>Review and approve subcontractor interim payment certificates (IPCs) and vendor invoices</li>
+                    <li>Monitor quality and productivity across all trade contractors on site</li>
+                </ul>
+            </div>
+            <div class="resp-card">
+                <div class="resp-number">3</div>
+                <h3>Budget &amp; Cost Control</h3>
+                <ul>
+                    <li>Manage project budgets, cash flow forecasting, and cost-to-complete reporting on a monthly basis</li>
+                    <li>Minimize cost overruns through proactive risk identification and value engineering</li>
+                    <li>Ensure timely submission of client progress invoices and follow-up on receivables</li>
+                </ul>
+            </div>
+            <div class="resp-card">
+                <div class="resp-number">4</div>
+                <h3>Technical Coordination</h3>
+                <ul>
+                    <li>Coordinate with Quality Engineer, Project Engineers &amp; Technical Office for shop drawing submissions</li>
+                    <li>Manage material approval requests (MARs) and RFI (Request for Information) workflows</li>
+                    <li>Ensure technical compliance across civil, structural, architectural, and MEP disciplines</li>
+                </ul>
+            </div>
+            <div class="resp-card">
+                <div class="resp-number">5</div>
+                <h3>Variations &amp; Change Orders</h3>
+                <ul>
+                    <li>Identify, evaluate, and manage variations/change orders in coordination with the Contracts team</li>
+                    <li>Document scope changes and negotiate commercial impact with clients and consultants</li>
+                    <li>Maintain full audit trail of all contractual variations</li>
+                </ul>
+            </div>
+            <div class="resp-card">
+                <div class="resp-number">6</div>
+                <h3>Client &amp; Project Closure</h3>
+                <ul>
+                    <li>Serve as the primary point of contact for clients and consultants</li>
+                    <li>Coordinate final inspections, snagging, and defect rectification to achieve Practical Completion</li>
+                    <li>Ensure smooth project handover with all documentation and as-built drawings</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ── CANDIDATE PROFILE ── -->
+<div class="section" id="profile">
+    <div class="container">
+        <div class="section-title">Candidate Profile</div>
+        <div class="section-line"></div>
+        <div class="profile-grid">
+            <div class="profile-box">
+                <h3>Requirements</h3>
+                <ul>
+                    <li>Bachelor's degree in Civil Engineering, Construction Management, or related discipline</li>
+                    <li>Proven experience managing construction projects as a Main Contractor</li>
+                    <li>Strong technical knowledge across civil, structural, architectural, MEP, and infrastructure works</li>
+                    <li>Hands-on experience with residential, warehouse, cold store, road, and underground utility projects</li>
+                    <li>Commercial awareness &mdash; budgets, cash flow, IPCs, and variations/change orders</li>
+                    <li>Experience with shop drawings, MARs, and RFI management</li>
+                    <li>Strong leadership skills to manage site engineers, foremen, QC/HSE teams, and subcontractors</li>
+                    <li>Excellent communication in English &amp; Arabic preferred</li>
+                </ul>
+            </div>
+            <div class="profile-box">
+                <h3>What You Will Gain</h3>
+                <ul>
+                    <li>Full ownership of end-to-end project delivery as Main Contractor</li>
+                    <li>Exposure to diverse project types &mdash; residential, industrial, hospitality, infrastructure</li>
+                    <li>Work on mixed-use developments for government and private sector clients</li>
+                    <li>Lead multi-disciplinary teams across civil, MEP, and infrastructure trades</li>
+                    <li>Drive commercial outcomes through cost control, value engineering, and variation management</li>
+                    <li>Competitive package commensurate with experience and market standards</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ── APPLICATION FORM ── -->
+<div class="form-section" id="apply">
+    <div class="container" style="text-align: center; margin-bottom: 2rem;">
+        <h2 style="font-size: 1.8rem; font-weight: 700; margin-bottom: 0.5rem;">Ready to Apply?</h2>
+        <p style="opacity: 0.85; font-size: 1rem;">Fill out the form below to submit your application. We'll review and get back to you shortly.</p>
+    </div>
+    <div class="form-wrapper">
+        <div style="text-align:center;padding:3.5rem 2rem;">
+            <div style="font-size:3.5rem;margin-bottom:1.2rem;">&#x1F4CB;</div>
+            <h3 style="color:var(--primary);font-size:1.4rem;margin-bottom:0.6rem;">Apply for this Position</h3>
+            <p style="color:var(--muted);margin-bottom:0.6rem;max-width:500px;margin-left:auto;margin-right:auto;font-size:0.95rem;">Click the button below to open the application form.</p>
+            <p style="color:var(--muted);margin-bottom:2rem;max-width:500px;margin-left:auto;margin-right:auto;font-size:0.88rem;">All fields marked with * are required. Please ensure your contact details and experience are accurate.</p>
+            <a href="https://forms.gle/62bwGPceuz4dsCCLA" target="_blank" style="display:inline-block;background:linear-gradient(135deg,#5B4A9E,#7B68AE);color:white;padding:1rem 3rem;border-radius:8px;font-weight:700;font-size:1.1rem;text-decoration:none;transition:transform 0.2s,box-shadow 0.2s;box-shadow:0 4px 15px rgba(0,0,0,0.15);" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 8px 25px rgba(0,0,0,0.25)'" onmouseout="this.style.transform='none';this.style.boxShadow='0 4px 15px rgba(0,0,0,0.15)'">Open Application Form &rarr;</a>
+            <p style="color:var(--muted);font-size:0.78rem;margin-top:1.2rem;">Opens in a new tab &bull; Powered by Google Forms</p>
+        </div>
+    </div>
+</div>
+
+<!-- ── FOOTER ── -->
+<footer>
+    <p>&copy; 2026 Project Manager Role &nbsp;|&nbsp; Riyadh, Saudi Arabia</p>
+    <p style="margin-top: 0.5rem; font-size: 0.78rem; opacity: 0.6;">This is an official career page for the Project Manager position. For questions, contact ahmedghazali@urbancompany.com</p>
+</footer>
+
+</body>
+</html>
+
